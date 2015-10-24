@@ -82,6 +82,7 @@ namespace WebServerTask
 
     public sealed class HttpServer : IDisposable
     {
+        string state = "Unspecified";
         string offHtmlString = "0";
         string onHtmlString  = "1";
         private const uint BufferSize = 8192;
@@ -142,7 +143,7 @@ namespace WebServerTask
         private async Task WriteResponseAsync(string request, IOutputStream os)
         {
             // See if the request is for blinky.html, if yes get the new state
-            string state = "Unspecified";
+
             bool stateChanged = false;
             if (request.Contains("blinky.html?state=on"))
             {
